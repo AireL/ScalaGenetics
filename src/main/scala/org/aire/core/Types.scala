@@ -21,6 +21,11 @@ object Types {
       Integer.parseInt(a.toBinaryString @~@ b.toBinaryString)
     } getOrElse (Int.MaxValue)
   }
+  implicit val crossLong : Crossover[Long] = new Crossover[Long] {
+    def crossover(a: Long, b: Long)(implicit r: Random, crossover: Double) : Long = Try {
+      java.lang.Long.parseLong(a.toBinaryString @~@ b.toBinaryString)
+    } getOrElse (Long.MaxValue)
+  }
   implicit val mutInt : Mutates[Int] = new Mutates[Int] {
     def mutate(a : Int)(implicit r : Random, mutator : Double) : Int = Try {
       Integer.parseInt(binaryFlip(a.toBinaryString, mutator)(r))
