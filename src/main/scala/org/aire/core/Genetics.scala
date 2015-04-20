@@ -1,11 +1,12 @@
 package org.aire.core
 
 import org.aire.utils.UtilityMethods._
-import org.aire.mutation.Mutate
+import shapeless._
+import poly._
 
 trait Genetics[A] {
-  def diversity : Mutate
   
+  def mutation : Poly
   def iterate(iterativeFunction : A => A) : Unit
   def fitness(value: A) : Double
   def success(value: A) : Boolean
